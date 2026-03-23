@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia de Estudo - Sistema Esquelético | UEM</title>
+
+  <meta name="theme-color" content="#0f4c81" />
+  <meta name="description" content="Guia de Estudo do Sistema Esquelético para alunos de Educação Física da UEM - Profª Dra. Cláudia Pinheiro." />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Guia Esquelético UEM" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="data:image/svg+xml;charset=UTF-8,
+  %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E
+  %3Crect width='512' height='512' rx='96' fill='%230f4c81'/%3E
+  %3Ctext x='50%25' y='54%25' text-anchor='middle' font-size='210' font-family='Arial' fill='white'%3E%F0%9F%A6%B4%3C/text%3E
+  %3C/svg%3E" />
+
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --primary:#0f4c81;
+      --primary-2:#1565a8;
+      --accent:#dbeafe;
+      --border:#d1d5db;
+      --success:#0f766e;
+      --danger:#b91c1c;
+      --warning:#92400e;
+      --shadow:0 10px 25px rgba(0,0,0,.08);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html, body{
+      margin:0;
+      padding:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+      scroll-behavior:smooth;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:24px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(244,247,251,.96);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(209,213,219,.8);
+    }
+
+    .topbar-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:14px 24px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .brand strong{
+      color:var(--primary);
+      font-size:1rem;
+    }
+
+    .brand span{
+      font-size:.92rem;
+      color:var(--muted);
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    button{
+      border:none;
+      border-radius:12px;
+      padding:12px 16px;
+      font-size:.95rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    button:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--primary-2);
+    }
+
+    .btn-light{
+      background:#fff;
+      color:var(--text);
+      border:1px solid var(--border);
+    }
+
+    .btn-danger{
+      background:var(--danger);
+      color:#fff;
+    }
+
+    .btn-install{
+      background:#0f766e;
+      color:#fff;
+      display:none;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#0f4c81,#1d6fb8);
+      color:#fff;
+      border-radius:24px;
+      padding:30px;
+      box-shadow:var(--shadow);
+      margin:24px 0;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:2rem;
+    }
+
+    .hero p{
+      margin:6px 0;
+      font-size:1rem;
+      opacity:.98;
+    }
+
+    .meta-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .meta-card{
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .meta-card strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:.92rem;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid #e5e7eb;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:24px;
+      margin-bottom:22px;
+    }
+
+    .card h2{
+      margin-top:0;
+      color:var(--primary);
+      font-size:1.5rem;
+      border-bottom:2px solid #e5eef9;
+      padding-bottom:10px;
+    }
+
+    .card h3{
+      margin-top:26px;
+      margin-bottom:10px;
+      color:#123d63;
+      font-size:1.15rem;
+    }
+
+    .card h4{
+      margin-top:18px;
+      margin-bottom:8px;
+      color:#234f78;
+      font-size:1rem;
+    }
+
+    .intro-box{
+      background:#f8fbff;
+      border:1px solid #dbeafe;
+      border-radius:16px;
+      padding:18px;
+    }
+
+    ul{
+      margin:8px 0 14px 22px;
+      padding:0;
+    }
+
+    li{
+      margin:6px 0;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:18px;
+    }
+
+    .subcard{
+      background:#fbfdff;
+      border:1px solid #e5eef9;
+      border-radius:16px;
+      padding:16px;
+    }
+
+    .subcard h4{
+      margin-top:0;
+    }
+
+    .note-block{
+      margin-top:18px;
+      background:#fcfcfd;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px;
+    }
+
+    .note-block label{
+      display:block;
+      font-weight:700;
+      margin-bottom:8px;
+      color:#374151;
+    }
+
+    textarea{
+      width:100%;
+      min-height:130px;
+      resize:vertical;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:14px;
+      font-size:1rem;
+      font-family:Arial, Helvetica, sans-serif;
+      background:#fff;
+      color:var(--text);
+      outline:none;
+    }
+
+    textarea:focus, input:focus{
+      border-color:#60a5fa;
+      box-shadow:0 0 0 3px rgba(96,165,250,.18);
+    }
+
+    .student-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .field label{
+      font-weight:700;
+      font-size:.95rem;
+    }
+
+    .field input{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+      font-size:1rem;
+    }
+
+    .status{
+      margin-top:10px;
+      font-size:.95rem;
+      color:var(--success);
+      font-weight:700;
+      min-height:24px;
+    }
+
+    .hint{
+      margin-top:8px;
+      color:var(--warning);
+      font-size:.93rem;
+      font-weight:700;
+    }
+
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.92rem;
+      padding:18px 10px 30px;
+    }
+
+    .print-only{
+      display:none;
+    }
+
+    @media (max-width: 640px){
+      .hero h1{
+        font-size:1.55rem;
+      }
+
+      .container{
+        padding:16px;
+      }
+
+      .topbar-inner{
+        padding:12px 16px;
+      }
+
+      .actions{
+        width:100%;
+      }
+
+      .actions button{
+        flex:1 1 100%;
+      }
+    }
+
+    @media print{
+      body{
+        background:#fff;
+      }
+
+      .topbar,
+      .status,
+      .hint,
+      .screen-only{
+        display:none !important;
+      }
+
+      .print-only{
+        display:block;
+      }
+
+      .container{
+        max-width:100%;
+        padding:0;
+      }
+
+      .hero{
+        box-shadow:none;
+        border-radius:0;
+        margin:0 0 16px;
+      }
+
+      .card{
+        box-shadow:none;
+        break-inside:avoid;
+        page-break-inside:avoid;
+      }
+
+      textarea,
+      input{
+        border:1px solid #999;
+        background:#fff !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar screen-only">
+    <div class="topbar-inner">
+      <div class="brand">
+        <strong>Guia de Estudo - Sistema Esquelético</strong>
+        <span>Educação Física | Universidade Estadual de Maringá</span>
+      </div>
+
+      <div class="actions">
+        <button class="btn-primary" onclick="salvarAnotacoes()">Salvar anotações</button>
+        <button class="btn-light" onclick="window.print()">Imprimir / Salvar em PDF</button>
+        <button class="btn-danger" onclick="limparAnotacoes()">Limpar anotações</button>
+        <button id="installBtn" class="btn-install">Instalar app</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Guia de Estudo: Sistema Esquelético</h1>
+      <p><strong>Curso:</strong> Educação Física</p>
+      <p><strong>Instituição:</strong> Universidade Estadual de Maringá - UEM</p>
+      <p><strong>Professora:</strong> Profª Dra. Cláudia Pinheiro</p>
+      <p>Material de apoio para revisão, estudo dirigido e registro de anotações pelos alunos.</p>
+
+      <div class="meta-grid">
+        <div class="meta-card">
+          <strong>Objetivo</strong>
+          Revisar os principais acidentes anatômicos e estruturas ósseas do sistema esquelético.
+        </div>
+        <div class="meta-card">
+          <strong>Uso do material</strong>
+          Preencha seus dados, faça anotações e use o botão de salvar para manter tudo gravado no navegador.
+        </div>
+        <div class="meta-card">
+          <strong>Exportação</strong>
+          Use o botão “Imprimir / Salvar em PDF” para gerar uma versão em PDF com suas anotações.
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Identificação do aluno</h2>
+      <div class="student-box">
+        <div class="field">
+          <label for="aluno_nome">Nome</label>
+          <input id="aluno_nome" data-save="true" type="text" placeholder="Digite seu nome completo" />
+        </div>
+        <div class="field">
+          <label for="aluno_turma">Turma</label>
+          <input id="aluno_turma" data-save="true" type="text" placeholder="Digite sua turma" />
+        </div>
+        <div class="field">
+          <label for="aluno_ra">RA / Matrícula</label>
+          <input id="aluno_ra" data-save="true" type="text" placeholder="Digite seu RA ou matrícula" />
+        </div>
+        <div class="field">
+          <label for="aluno_data">Data</label>
+          <input id="aluno_data" data-save="true" type="text" placeholder="__/__/____" />
+        </div>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="hint">Dica: ao abrir pelo GitHub Pages, o app poderá ser instalado no celular e usado com cache offline.</div>
+    </section>
+
+    <section class="card">
+      <h2>Conceitos iniciais</h2>
+      <div class="intro-box">
+        <p><strong>1.</strong> Defina <strong>esqueleto apendicular</strong> e <strong>esqueleto axial</strong>.</p>
+        <p><strong>2.</strong> Explique o que é <strong>diáfise</strong>, <strong>epífise</strong>, <strong>metáfise</strong>, <strong>cartilagem epifisial</strong> e <strong>linha epifisial</strong>.</p>
+      </div>
+
+      <div class="note-block">
+        <label for="anotacoes_conceitos">Anotações dos conceitos iniciais</label>
+        <textarea id="anotacoes_conceitos" data-save="true" placeholder="Escreva aqui suas definições, resumos e observações..."></textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Membro Superior</h2>
+
+      <div class="grid-2">
+        <div class="subcard">
+          <h4>Escápula</h4>
+          <ul>
+            <li>Espinha da escápula</li>
+            <li>Acrômio</li>
+            <li>Processo coracóide</li>
+            <li>Fossa supraespinal</li>
+            <li>Fossa infraespinal</li>
+            <li>Margem medial</li>
+            <li>Margem lateral</li>
+            <li>Incisura da escápula</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Clavícula</h4>
+          <ul>
+            <li>Extremidade esternal</li>
+            <li>Corpo da clavícula</li>
+            <li>Extremidade acromial</li>
+            <li>Tubérculo conoide</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Úmero</h4>
+          <ul>
+            <li>Cabeça do úmero</li>
+            <li>Tubérculo maior</li>
+            <li>Tubérculo menor</li>
+            <li>Sulco intertubercular</li>
+            <li>Corpo do úmero</li>
+            <li>Tróclea</li>
+            <li>Capítulo</li>
+            <li>Fossa coronóide</li>
+            <li>Fossa do olecrano</li>
+            <li>Sulco do nervo radial</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Rádio</h4>
+          <ul>
+            <li>Cabeça do rádio</li>
+            <li>Corpo do rádio</li>
+            <li>Tuberosidade do rádio</li>
+            <li>Processo estilóide do rádio</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Ulna</h4>
+          <ul>
+            <li>Olécrano</li>
+            <li>Processo coronóide</li>
+            <li>Incisura radial</li>
+            <li>Incisura troclear</li>
+            <li>Corpo da ulna</li>
+            <li>Cabeça da ulna</li>
+            <li>Tuberosidade da ulna</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Ossos Carpais</h4>
+          <ul>
+            <li>Escafóide</li>
+            <li>Semilunar</li>
+            <li>Piramidal</li>
+            <li>Pisiforme</li>
+            <li>Trapézio</li>
+            <li>Trapezóide</li>
+            <li>Capitato</li>
+            <li>Hamato</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Ossos Metacarpais</h4>
+          <ul>
+            <li>Ossos metacarpais (I ao V)</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Falanges</h4>
+          <ul>
+            <li>Falanges (proximal, média e distal)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-block">
+        <label for="anotacoes_membro_superior">Anotações - Membro Superior</label>
+        <textarea id="anotacoes_membro_superior" data-save="true" placeholder="Registre aqui suas observações sobre o membro superior..."></textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Membro Inferior</h2>
+
+      <div class="grid-2">
+        <div class="subcard">
+          <h4>Osso do Quadril</h4>
+          <ul>
+            <li>Acetábulo</li>
+            <li>Fossa do acetábulo</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Ílio</h4>
+          <ul>
+            <li>Crista ilíaca</li>
+            <li>Espinha ilíaca antero-superior</li>
+            <li>Espinha ilíaca antero-inferior</li>
+            <li>Espinha ilíaca postero-superior</li>
+            <li>Espinha ilíaca postero-inferior</li>
+            <li>Face auricular</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Ísquio</h4>
+          <ul>
+            <li>Túber isquiático</li>
+            <li>Espinha isquiática</li>
+            <li>Ramo do ísquio</li>
+            <li>Corpo de ísquio</li>
+            <li>Incisura isquiática maior</li>
+            <li>Incisura isquiática menor</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Púbis</h4>
+          <ul>
+            <li>Corpo do púbis</li>
+            <li>Face sinfisial</li>
+            <li>Ramo superior do púbis</li>
+            <li>Ramo inferior do púbis</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Fêmur</h4>
+          <ul>
+            <li>Cabeça do fêmur</li>
+            <li>Colo do fêmur</li>
+            <li>Trocânter maior</li>
+            <li>Trocânter menor</li>
+            <li>Corpo do fêmur</li>
+            <li>Côndilo medial</li>
+            <li>Côndilo lateral</li>
+            <li>Face patelar</li>
+            <li>Fóvea da cabeça do fêmur</li>
+            <li>Linha intertrocantérica</li>
+            <li>Crista intertrocantérica</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Patela</h4>
+          <ul>
+            <li>Face articular</li>
+            <li>Ápice</li>
+            <li>Base</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Tíbia</h4>
+          <ul>
+            <li>Côndilo lateral</li>
+            <li>Côndilo medial</li>
+            <li>Corpo da tíbia</li>
+            <li>Tuberosidade da tíbia</li>
+            <li>Maléolo medial</li>
+            <li>Tubérculos intercondilares da eminência intercondilar</li>
+            <li>Margem interóssea</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Fíbula</h4>
+          <ul>
+            <li>Cabeça da fíbula</li>
+            <li>Corpo da fíbula</li>
+            <li>Maléolo lateral</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Ossos do Pé</h4>
+          <ul>
+            <li>Tálus</li>
+            <li>Calcâneo</li>
+            <li>Navicular</li>
+            <li>Cubóide</li>
+            <li>Cuneiforme medial</li>
+            <li>Cuneiforme intermédio</li>
+            <li>Cuneiforme lateral</li>
+            <li>Ossos metatarsais (I ao V)</li>
+            <li>Falanges (proximal, média e distal)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-block">
+        <label for="anotacoes_membro_inferior">Anotações - Membro Inferior</label>
+        <textarea id="anotacoes_membro_inferior" data-save="true" placeholder="Registre aqui suas observações sobre o membro inferior..."></textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Crânio</h2>
+
+      <div class="grid-2">
+        <div class="subcard">
+          <h4>Neurocrânio</h4>
+          <ul>
+            <li>Frontal</li>
+            <li>Parietais (2)</li>
+            <li>Temporais (2)</li>
+            <li>Occipital</li>
+            <li>Esfenoide</li>
+            <li>Etmoide</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h4>Viscerocrânio</h4>
+          <ul>
+            <li>Nasais (2)</li>
+            <li>Maxilas (2)</li>
+            <li>Zigomáticos (2)</li>
+            <li>Lacrimais (2)</li>
+            <li>Palatinos (2)</li>
+            <li>Conchas Nasais Inferiores (2)</li>
+            <li>Vômer</li>
+            <li>Mandíbula</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-block">
+        <label for="anotacoes_cranio">Anotações - Crânio</label>
+        <textarea id="anotacoes_cranio" data-save="true" placeholder="Registre aqui suas observações sobre o crânio..."></textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Resumo final do estudante</h2>
+      <div class="note-block" style="margin-top:0;">
+        <label for="anotacoes_resumo">Síntese geral da aula / estudo</label>
+        <textarea id="anotacoes_resumo" data-save="true" placeholder="Faça aqui um resumo geral do conteúdo estudado..."></textarea>
+      </div>
+    </section>
+
+    <section class="card print-only">
+      <h2>Registro de impressão</h2>
+      <p>Documento preparado para estudo e revisão do conteúdo de Sistema Esquelético.</p>
+      <p><strong>Curso:</strong> Educação Física - Universidade Estadual de Maringá</p>
+      <p><strong>Professora:</strong> Profª Dra. Cláudia Pinheiro</p>
+    </section>
+
+    <div class="footer">
+      Material digital de apoio para estudo anatômico com espaço para anotações, salvamento local, exportação em PDF e instalação como app.
+    </div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "guia_estudo_sistema_esqueletico_uem_v2";
+    let deferredPrompt = null;
+
+    function getCamposSalvos() {
+      return document.querySelectorAll("[data-save='true']");
+    }
+
+    function mostrarStatus(msg, tempo = 3000) {
+      const status = document.getElementById("status");
+      status.textContent = msg;
+      clearTimeout(window.__statusTimer);
+      window.__statusTimer = setTimeout(() => {
+        status.textContent = "";
+      }, tempo);
+    }
+
+    function salvarAnotacoes() {
+      const dados = {};
+      getCamposSalvos().forEach(campo => {
+        dados[campo.id] = campo.value;
+      });
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
+      mostrarStatus("Anotações salvas com sucesso.");
+    }
+
+    function carregarAnotacoes() {
+      const dadosSalvos = localStorage.getItem(STORAGE_KEY);
+      if (!dadosSalvos) return;
+
+      try {
+        const dados = JSON.parse(dadosSalvos);
+        getCamposSalvos().forEach(campo => {
+          if (Object.prototype.hasOwnProperty.call(dados, campo.id)) {
+            campo.value = dados[campo.id];
+          }
+        });
+        mostrarStatus("Anotações carregadas.", 2000);
+      } catch (e) {
+        mostrarStatus("Não foi possível carregar os dados salvos.");
+      }
+    }
+
+    function limparAnotacoes() {
+      const confirmar = confirm("Tem certeza que deseja apagar todas as anotações salvas?");
+      if (!confirmar) return;
+
+      getCamposSalvos().forEach(campo => {
+        campo.value = "";
+      });
+
+      localStorage.removeItem(STORAGE_KEY);
+      mostrarStatus("Todas as anotações foram removidas.");
+    }
+
+    function habilitarAutoSave() {
+      getCamposSalvos().forEach(campo => {
+        campo.addEventListener("input", () => {
+          const dados = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+          dados[campo.id] = campo.value;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
+        });
+      });
+    }
+
+    function registrarServiceWorker() {
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", async () => {
+          try {
+            await navigator.serviceWorker.register("./sw.js");
+            console.log("Service Worker registrado com sucesso.");
+          } catch (error) {
+            console.log("Erro ao registrar Service Worker:", error);
+          }
+        });
+      }
+    }
+
+    function configurarInstalacaoPWA() {
+      const installBtn = document.getElementById("installBtn");
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = "inline-block";
+      });
+
+      installBtn.addEventListener("click", async () => {
+        if (!deferredPrompt) return;
+
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        installBtn.style.display = "none";
+      });
+
+      window.addEventListener("appinstalled", () => {
+        installBtn.style.display = "none";
+        mostrarStatus("Aplicativo instalado com sucesso.");
+      });
+    }
+
+    carregarAnotacoes();
+    habilitarAutoSave();
+    registrarServiceWorker();
+    configurarInstalacaoPWA();
+  </script>
+</body>
+</html>
