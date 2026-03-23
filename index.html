@@ -5,19 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guia de Estudo - Sistema Esquelético | UEM</title>
 
+  <meta name="description" content="Guia de estudo do sistema esquelético para alunos de Educação Física da Universidade Estadual de Maringá." />
   <meta name="theme-color" content="#0f4c81" />
-  <meta name="description" content="Guia de Estudo do Sistema Esquelético para alunos de Educação Física da UEM - Profª Dra. Cláudia Pinheiro." />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Guia Esquelético UEM" />
+  <meta name="apple-mobile-web-app-title" content="Guia UEM" />
 
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="data:image/svg+xml;charset=UTF-8,
-  %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E
-  %3Crect width='512' height='512' rx='96' fill='%230f4c81'/%3E
-  %3Ctext x='50%25' y='54%25' text-anchor='middle' font-size='210' font-family='Arial' fill='white'%3E%F0%9F%A6%B4%3C/text%3E
-  %3C/svg%3E" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
 
   <style>
     :root{
@@ -36,7 +33,9 @@
       --radius:18px;
     }
 
-    *{ box-sizing:border-box; }
+    *{
+      box-sizing:border-box;
+    }
 
     html, body{
       margin:0;
@@ -193,15 +192,8 @@
       padding-bottom:10px;
     }
 
-    .card h3{
-      margin-top:26px;
-      margin-bottom:10px;
-      color:#123d63;
-      font-size:1.15rem;
-    }
-
     .card h4{
-      margin-top:18px;
+      margin-top:0;
       margin-bottom:8px;
       color:#234f78;
       font-size:1rem;
@@ -234,10 +226,6 @@
       border:1px solid #e5eef9;
       border-radius:16px;
       padding:16px;
-    }
-
-    .subcard h4{
-      margin-top:0;
     }
 
     .note-block{
@@ -400,7 +388,7 @@
         <button class="btn-primary" onclick="salvarAnotacoes()">Salvar anotações</button>
         <button class="btn-light" onclick="window.print()">Imprimir / Salvar em PDF</button>
         <button class="btn-danger" onclick="limparAnotacoes()">Limpar anotações</button>
-        <button id="installBtn" class="btn-install">Instalar app</button>
+        <button id="installBtn" class="btn-install" onclick="instalarApp()">Instalar app</button>
       </div>
     </div>
   </div>
@@ -450,7 +438,7 @@
         </div>
       </div>
       <div class="status" id="status"></div>
-      <div class="hint">Dica: ao abrir pelo GitHub Pages, o app poderá ser instalado no celular e usado com cache offline.</div>
+      <div class="hint">Para instalar como app, publique no GitHub Pages com HTTPS e abra no Chrome do celular.</div>
     </section>
 
     <section class="card">
@@ -742,7 +730,7 @@
   </main>
 
   <script>
-    const STORAGE_KEY = "guia_estudo_sistema_esqueletico_uem_v2";
+    const STORAGE_KEY = "guia_estudo_sistema_esqueletico_uem_v3";
     let deferredPrompt = null;
 
     function getCamposSalvos() {
@@ -763,7 +751,6 @@
       getCamposSalvos().forEach(campo => {
         dados[campo.id] = campo.value;
       });
-
       localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
       mostrarStatus("Anotações salvas com sucesso.");
     }
@@ -807,17 +794,23 @@
       });
     }
 
-    function registrarServiceWorker() {
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", async () => {
-          try {
-            await navigator.serviceWorker.register("./sw.js");
-            console.log("Service Worker registrado com sucesso.");
-          } catch (error) {
-            console.log("Erro ao registrar Service Worker:", error);
-          }
-        });
+    async function instalarApp() {
+      const installBtn = document.getElementById("installBtn");
+
+      if (!deferredPrompt) {
+        alert("No seu navegador, abra o menu e escolha 'Adicionar à tela inicial' ou 'Instalar app'.");
+        return;
       }
+
+      deferredPrompt.prompt();
+      const choiceResult = await deferredPrompt.userChoice;
+
+      if (choiceResult.outcome === "accepted") {
+        mostrarStatus("Aplicativo instalado com sucesso.");
+      }
+
+      deferredPrompt = null;
+      installBtn.style.display = "none";
     }
 
     function configurarInstalacaoPWA() {
@@ -829,25 +822,30 @@
         installBtn.style.display = "inline-block";
       });
 
-      installBtn.addEventListener("click", async () => {
-        if (!deferredPrompt) return;
-
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        installBtn.style.display = "none";
-      });
-
       window.addEventListener("appinstalled", () => {
         installBtn.style.display = "none";
         mostrarStatus("Aplicativo instalado com sucesso.");
       });
     }
 
+    function registrarServiceWorker() {
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js")
+            .then(() => {
+              console.log("Service Worker registrado com sucesso.");
+            })
+            .catch((error) => {
+              console.log("Erro ao registrar Service Worker:", error);
+            });
+        });
+      }
+    }
+
     carregarAnotacoes();
     habilitarAutoSave();
-    registrarServiceWorker();
     configurarInstalacaoPWA();
+    registrarServiceWorker();
   </script>
 </body>
 </html>
